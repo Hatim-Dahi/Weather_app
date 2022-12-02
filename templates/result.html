@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+
+<body>
+
+
+    <div class="result-container">
+        <h2>{% if Weather.city %}
+            {{Weather.city | default('City Name')}}
+            {% endif%}
+        </h2>
+        <div class="img-card">
+
+            <img src={{url}} alt="weather icon">
+
+        </div>
+        <div class="content">
+            <p id="temp">
+                {% if Weather.temp %}
+                {{Weather.temp | round(2, 'floor') }} °C
+                {% endif %}
+            </p>
+            <p id="dis">
+                {% if Weather.description %}
+                {{Weather.description}}
+                {% endif%}
+            </p>
+            <div class="sun-div">
+                <div class="sun"><strong>Sunrise</strong>
+                    <br>{% if sunrise %}{{sunrise}}{% endif %}
+                </div>
+                <div class="sun"><strong>Sunset</strong><br>{% if sunset %}{{sunset}} {% endif%}</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+
+</html>
